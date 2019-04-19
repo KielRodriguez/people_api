@@ -1,0 +1,34 @@
+from datetime import datetime
+
+def get_timestamp():
+    return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
+
+# Data to server with or API
+PEOPLE = {
+    "Farrell": {
+        "fname": "Doug",
+        "lname": "Farrell",
+        "timestamp": get_timestamp()
+    },
+    "Brockman": {
+        "fname": "Kent",
+        "lname": "Brockman",
+        "timestamp": get_timestamp()
+    },
+    "Easter": {
+        "fname": "Bunny",
+        "lname": "Easter",
+        "timestamp": get_timestamp()
+    }
+}
+
+# Create a handler for our read (GET) people
+def read():
+    """
+    This function respnds to a request for /api/people
+    with the complet list of people
+
+    :return:     sorted list of people
+    """
+    # Create the list of people from our data
+    return [PEOPLE[key] for key in sorted(PEOPLE.keys())]
